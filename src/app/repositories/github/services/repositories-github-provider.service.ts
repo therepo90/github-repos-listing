@@ -13,7 +13,7 @@ export class RepositoriesGithubProviderService extends RepositoriesProviderServi
     super();
   }
 
-  getRepositories(userId: string): Observable<Repository[]> {
+  getRepositories(): Observable<Repository[]> {
     return this.httpClient.get<RepositoryGithub[]>(endpoints.repos).pipe(
       map(repos => repos.map(this.toRepository))
     );
