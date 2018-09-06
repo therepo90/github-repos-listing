@@ -7,6 +7,10 @@ import {RepositoriesProviderService} from './repositories-provider.service';
 export class RepositoriesMockProviderService extends RepositoriesProviderService {
 
   getRepositories(userId: string): Observable<Repository[]> {
-    return of([{}, {}]);
+    return of([{
+      link: 'http://something.com',
+      fav: false,
+      imgUrl: 'http://something.com/smth.png',
+    }]);
   }
 }
