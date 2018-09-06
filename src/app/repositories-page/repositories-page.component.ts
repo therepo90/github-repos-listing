@@ -17,4 +17,11 @@ export class RepositoriesPageComponent implements OnInit {
     this.repos$ = this.service.getRepositories(this.userId);
   }
 
+  onFavClick(repo: Repository) {
+    this.service.toggleFavourite(repo);
+  }
+
+  public isFav(repo): boolean {
+    return this.service.isFav(repo);
+  }
 }

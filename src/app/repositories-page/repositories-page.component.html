@@ -1,3 +1,8 @@
 <h1 class="headline">Repositories:</h1>
-<app-repo *ngFor="let repo of repos$ | async" [repo]="repo"></app-repo>
+<app-repo
+  *ngFor="let repo of repos$ | async" [repo]="repo"
+  (favClick)="onFavClick(repo)"
+  [fav]="isFav(repo)"
+>
+</app-repo>
 

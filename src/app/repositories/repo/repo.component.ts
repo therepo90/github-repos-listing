@@ -6,7 +6,8 @@ import {Repository} from '../models/repository';
 })
 export class RepoComponent implements OnInit {
   @Input() public repo: Repository;
-  @Output() public favClick: EventEmitter<Repository> = new EventEmitter<Repository>();
+  @Input() public fav = false;
+  @Output() public favClick: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
   }
@@ -15,6 +16,6 @@ export class RepoComponent implements OnInit {
   }
 
   onFavClick() {
-    this.favClick.emit(this.repo);
+    this.favClick.emit();
   }
 }

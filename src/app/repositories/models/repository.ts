@@ -1,7 +1,6 @@
 export interface Repository {
   link: string;
-  name: string;
+  name: string; // @TODO add unique `id`
   desc: string;
-  fav: boolean;
   imgUrl: string;
 }

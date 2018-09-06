@@ -9,7 +9,6 @@ export class RepositoriesMockProviderService extends RepositoriesProviderService
   getRepositories(userId: string): Observable<Repository[]> {
     return of([{
       link: 'http://something.com',
-      fav: false,
       imgUrl: 'assets/github.png',
       name: 'Repo1',
       desc: 'This repo contains very good code.',
