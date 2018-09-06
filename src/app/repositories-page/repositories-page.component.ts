@@ -1,21 +1,17 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {merge, Subscription} from 'rxjs';
-import {RepositoriesPageService} from './services/repositories-page.service';
-import {UserService} from '../user/services/user.service';
-import {RepositoryUI} from '../repositories/models/repository-ui';
 import {FormControl} from '@angular/forms';
 import {sortBy} from 'lodash';
+import {merge, Subscription} from 'rxjs';
+import {RepositoryUI} from '../repositories/models/repository-ui';
+import {UserService} from '../user/services/user.service';
+import {RepositoriesPageService} from './services/repositories-page.service';
 
 enum SORT_FIELD {
-  NAME = 'name',
-  FAV = 'fav',
-  DESC = 'desc' // doesn't make much sense
+  NAME = 'name', FAV = 'fav', DESC = 'desc' // doesn't make much sense
 }
 
 @Component({
-  selector: 'app-repositories-page',
-  templateUrl: './repositories-page.component.html',
-  styleUrls: ['./repositories-page.component.scss']
+  selector: 'app-repositories-page', templateUrl: './repositories-page.component.html', styleUrls: ['./repositories-page.component.scss']
 })
 export class RepositoriesPageComponent implements OnInit, OnDestroy {
   repos: RepositoryUI[] = [];
@@ -29,12 +25,10 @@ export class RepositoriesPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.service.getRepositories().subscribe(
-      repos => {
-        this.allRepos = repos;
-        this.repos = this.getVisibleRepos(repos);
-      }
-    );
+    this.subscription = this.service.getRepositories().subscribe(repos => {
+      this.allRepos = repos;
+      this.repos = this.getVisibleRepos(repos);
+    });
     merge(this.searchText.valueChanges, this.sortField.valueChanges).subscribe(() => {
       this.repos = this.getVisibleRepos(this.allRepos);
     });
@@ -51,7 +45,7 @@ export class RepositoriesPageComponent implements OnInit, OnDestroy {
   }
 
   private sortRepos(repos: RepositoryUI[], sortField: SORT_FIELD): RepositoryUI[] {
-    return sortBy(repos, repo => repo[sortField]);
+    return sortBy(repos, repo => typeof repo[sortField] === 'boolean' ? !repo[sortField] : repo[sortField]);
   }
 
   private filterRepos(repos: RepositoryUI[], val: string) {
