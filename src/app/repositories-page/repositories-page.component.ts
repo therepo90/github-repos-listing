@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Repository} from '../repositories/models/repository';
 import {RepositoriesPageService} from './services/repositories-page.service';
+import {UserService} from '../user/services/user.service';
+import {RepositoryUI} from '../repositories/models/repository-ui';
 
 @Component({
   selector: 'app-repositories-page',
@@ -9,19 +11,15 @@ import {RepositoriesPageService} from './services/repositories-page.service';
   styleUrls: ['./repositories-page.component.scss']
 })
 export class RepositoriesPageComponent implements OnInit {
-  public repos$: Observable<Repository[]> = of([]);
-  private userId =  '5'; // @TODO
-  constructor(private service: RepositoriesPageService) { }
+  public repos$: Observable<RepositoryUI[]> = of([]);
+  constructor(private service: RepositoriesPageService, private userService: UserService) { }
 
   ngOnInit() {
-    this.repos$ = this.service.getRepositories(this.userId);
+    this.repos$ = this.service.getRepositories(this.userService.getUserId());
   }
 
-  onFavClick(repo: Repository) {
-    this.service.toggleFavourite(repo);
+  onFavClick(repo: RepositoryUI) {
+    this.userService.toggleFavourite(repo);
   }
 
-  public isFav(repo): boolean {
-    return this.service.isFav(repo);
-  }
 }

@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RepositoriesPageModule} from './repositories-page/repositories-page.module';
 import {RepositoriesModule} from './repositories/repositories.module';
+import {UserModule} from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {RepositoriesModule} from './repositories/repositories.module';
   imports: [
     BrowserModule,
     RepositoriesModule.forRoot(),
+    UserModule.forRoot(),
     RepositoriesPageModule,
     AppRoutingModule,
   ],
