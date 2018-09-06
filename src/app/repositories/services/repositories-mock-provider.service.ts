@@ -10,7 +10,9 @@ export class RepositoriesMockProviderService extends RepositoriesProviderService
     return of([{
       link: 'http://something.com',
       fav: false,
-      imgUrl: 'http://something.com/smth.png',
+      imgUrl: 'assets/github.png',
+      name: 'Repo1',
+      desc: 'This repo contains very good code.',
     }]);
   }
 }

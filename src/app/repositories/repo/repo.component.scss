@@ -1,0 +1,46 @@
+:host {
+  display: grid;
+  grid-template-columns: 3rem 5rem auto;
+  grid-gap: 2rem;
+  border: 1px solid black;
+  color: white;
+  padding: 0.5rem 4rem;
+}
+
+.icon {
+  &.icon-fav {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: white;
+
+    &.active {
+      background-color: lightblue;
+    }
+  }
+}
+
+.img {
+  width: 6rem;
+  height: 6rem;
+}
+
+.title {
+  display:inline-block;
+  padding: 1rem 0;
+  color: black;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.desc {
+  font-size: 1.2rem;
+  color: gray;
+}
+
+.fav-container, .img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

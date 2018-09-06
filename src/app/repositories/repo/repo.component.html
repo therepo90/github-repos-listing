@@ -1,3 +1,18 @@
-<p>
-  repo works!
-</p>
+<div class="fav-container">
+  <button (click)="onFavClick()">
+    <div class="icon icon-fav"></div>
+  </button>
+</div>
+<div class="img-container">
+  <div><img [src]="repo.imgUrl" class="img"></div>
+</div>
+<div class="info">
+  <div class="title">
+    <a [href]="repo.link">
+      {{repo.name}}
+    </a>
+  </div>
+  <div class="desc">
+    {{repo.desc}}
+  </div>
+</div>
