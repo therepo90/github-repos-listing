@@ -6,7 +6,7 @@ import {RepositoriesProviderService} from './repositories-provider.service';
 @Injectable()
 export class RepositoriesMockProviderService extends RepositoriesProviderService {
 
-  getRepositories(userId: string): Observable<Repository[]> {
+  getRepositories(): Observable<Repository[]> {
     return of([{
       link: 'http://something.com',
       imgUrl: 'assets/github.png',

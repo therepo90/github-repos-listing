@@ -7,5 +7,5 @@ export abstract class RepositoriesProviderService {
 
   constructor() { }
 
-  abstract getRepositories(userId: string): Observable<Repository[]>;
+  abstract getRepositories(): Observable<Repository[]>;
 }

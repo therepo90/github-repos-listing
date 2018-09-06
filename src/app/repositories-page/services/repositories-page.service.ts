@@ -12,8 +12,8 @@ export class RepositoriesPageService {
   constructor(private provider: RepositoriesProviderService, private userService: UserService) {
   }
 
-  getRepositories(userId: string): Observable<RepositoryUI[]> {
-    return combineLatest(this.provider.getRepositories(userId), this.userService.favourites$)
+  getRepositories(): Observable<RepositoryUI[]> {
+    return combineLatest(this.provider.getRepositories(), this.userService.favourites$)
       .pipe(map(([repos, favs]) => repos.map(repo => ({
         ...repo,
         fav: favs[repo.name]

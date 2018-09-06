@@ -15,7 +15,7 @@ export class RepositoriesPageComponent implements OnInit {
   constructor(private service: RepositoriesPageService, private userService: UserService) { }
 
   ngOnInit() {
-    this.repos$ = this.service.getRepositories(this.userService.getUserId());
+    this.repos$ = this.service.getRepositories();
   }
 
   onFavClick(repo: RepositoryUI) {

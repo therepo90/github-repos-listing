@@ -9,12 +9,9 @@ interface BinaryMap {
 @Injectable()
 export class UserService {
 
+  // @TODO should be persistent and loaded on init
   private favouritesSubject$ = new BehaviorSubject<BinaryMap>({});
   public favourites$: Observable<BinaryMap> = this.favouritesSubject$.asObservable();
-
-  getUserId() {
-    return '5'; // @TODO
-  }
 
   toggleFavourite(repo: Repository) {
     const curr = {...this.favouritesSubject$.getValue()};
