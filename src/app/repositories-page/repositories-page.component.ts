@@ -1,11 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {merge, Observable, of, Subscription} from 'rxjs';
-import {Repository} from '../repositories/models/repository';
+import {merge, Subscription} from 'rxjs';
 import {RepositoriesPageService} from './services/repositories-page.service';
 import {UserService} from '../user/services/user.service';
 import {RepositoryUI} from '../repositories/models/repository-ui';
 import {FormControl} from '@angular/forms';
-import {combineAll, switchMap} from 'rxjs/operators';
+import {sortBy} from 'lodash';
+
+enum SORT_FIELD {
+  NAME = 'name',
+  FAV = 'fav',
+  DESC = 'desc' // doesn't make much sense
+}
 
 @Component({
   selector: 'app-repositories-page',
@@ -15,8 +20,9 @@ import {combineAll, switchMap} from 'rxjs/operators';
 export class RepositoriesPageComponent implements OnInit, OnDestroy {
   repos: RepositoryUI[] = [];
   searchText = new FormControl('');
-  sortField = new FormControl('name');
+  private DEFAULT_SORT_FIELD = SORT_FIELD.NAME;
   private allRepos: RepositoryUI[] = [];
+  sortField = new FormControl(this.DEFAULT_SORT_FIELD);
   private subscription: Subscription;
 
   constructor(private service: RepositoriesPageService, private userService: UserService) {
@@ -24,20 +30,13 @@ export class RepositoriesPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.service.getRepositories().subscribe(
-      repos => this.repos = this.allRepos = repos
-    );
-    const searchText$ = this.searchText.valueChanges;
-    const sortField$ = this.sortField.valueChanges;
-    searchText$.subscribe(val => {
-      if (val) {
-        this.repos = this.repos.filter(repo => repo.name.includes(val));
-      } else {
-        this.repos = this.allRepos;
+      repos => {
+        this.allRepos = repos;
+        this.repos = this.getVisibleRepos(repos);
       }
-    });
-
-    sortField$.subscribe(val => {
-      
+    );
+    merge(this.searchText.valueChanges, this.sortField.valueChanges).subscribe(() => {
+      this.repos = this.getVisibleRepos(this.allRepos);
     });
   }
 
@@ -51,4 +50,20 @@ export class RepositoriesPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  private sortRepos(repos: RepositoryUI[], sortField: SORT_FIELD): RepositoryUI[] {
+    return sortBy(repos, repo => repo[sortField]);
+  }
+
+  private filterRepos(repos: RepositoryUI[], val: string) {
+    if (val) {
+      return repos.filter(repo => repo.name.includes(val));
+    } else {
+      return repos;
+    }
+  }
+
+  private getVisibleRepos(repos: RepositoryUI[]) {
+    const filteredRepos = this.filterRepos(repos, this.searchText.value);
+    return this.sortRepos(filteredRepos, this.sortField.value);
+  }
 }
