@@ -3,6 +3,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {RepoComponent} from './repo/repo.component';
 import {RepositoriesMockProviderService} from './services/repositories-mock-provider.service';
 import {RepositoriesProviderService} from './services/repositories-provider.service';
+import {RepositoriesGithubProviderService} from './github/services/repositories-github-provider.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ export class RepositoriesModule {
     return {
       ngModule: RepositoriesModule, providers: [
         {
-          provide: RepositoriesProviderService, useClass: RepositoriesMockProviderService,
+          provide: RepositoriesProviderService, useClass: RepositoriesGithubProviderService,
         }
       ]
     };

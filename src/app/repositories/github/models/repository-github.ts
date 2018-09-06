@@ -1,5 +1,5 @@
 export interface RepositoryGithub {
-  link: string;
-  fav: boolean;
-  imgUrl: string;
+  name: string;
+  html_url: string;
+  description: string;
 }

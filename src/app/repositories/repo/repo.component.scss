@@ -3,8 +3,13 @@
   grid-template-columns: 3rem 5rem auto;
   grid-gap: 2rem;
   border: 1px solid black;
+  border-bottom: none;
   color: white;
   padding: 0.5rem 4rem;
+
+  &:last-of-type {
+    border-bottom: 1px solid black;
+  }
 }
 
 .icon {

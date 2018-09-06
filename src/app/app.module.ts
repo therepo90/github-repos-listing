@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {RepositoriesPageModule} from './repositories-page/repositories-page.module';
 import {RepositoriesModule} from './repositories/repositories.module';
 import {UserModule} from './user/user.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {UserModule} from './user/user.module';
     RepositoriesModule.forRoot(),
     UserModule.forRoot(),
     RepositoriesPageModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [],
