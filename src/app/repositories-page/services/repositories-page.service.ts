@@ -15,7 +15,8 @@ export class RepositoriesPageService {
     return combineLatest(this.provider.getRepositories(), this.userService.favourites$)
       .pipe(map(([repos, favs]) => repos.map(repo => (
         {
-          ...repo, fav: Boolean(favs[repo.name])
+          ...repo,
+          fav: Boolean(favs[repo.name])
         }
       ))));
   }

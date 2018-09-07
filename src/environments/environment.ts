@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.github.com/orgs/octokit'
+  apiBaseUrl: 'https://api.github.com/orgs/octokit'
 };
 
 /*

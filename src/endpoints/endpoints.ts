@@ -1,5 +1,5 @@
 import {environment} from '../environments/environment';
-
+import { Location } from '@angular/common';
 export const endpoints = {
-  repos: `${environment.apiUrl}/repos`,
+  repos: Location.joinWithSlash(environment.apiBaseUrl, 'repos'),
 };
