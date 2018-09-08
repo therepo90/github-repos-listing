@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiBaseUrl: 'https://api.github.com/orgs/octokit'
+    production: false,
+    apiBaseUrl: 'https://api.github.com/orgs/octokit'
 };
 
 /*

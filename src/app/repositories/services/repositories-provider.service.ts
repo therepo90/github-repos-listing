@@ -1,11 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Repository} from '../models/repository';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Repository } from '../models/repository';
 
 @Injectable()
 export abstract class RepositoriesProviderService {
+    constructor() {}
 
-  constructor() { }
-
-  abstract getRepositories(): Observable<Repository[]>;
+    abstract getRepositories(): Observable<Repository[]>;
 }

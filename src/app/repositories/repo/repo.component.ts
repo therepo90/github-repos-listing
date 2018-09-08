@@ -1,21 +1,23 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Repository} from '../models/repository';
-import {RepositoryUI} from '../models/repository-ui';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Repository } from '../models/repository';
+import { RepositoryUI } from '../models/repository-ui';
 
 @Component({
-  selector: 'app-repo', templateUrl: './repo.component.html', styleUrls: ['./repo.component.scss']
+    selector: 'app-repo',
+    templateUrl: './repo.component.html',
+    styleUrls: ['./repo.component.scss']
 })
 export class RepoComponent implements OnInit {
-  @Input() public repo: RepositoryUI;
-  @Output() public favClick: EventEmitter<void> = new EventEmitter<void>();
+    @Input()
+    public repo: RepositoryUI;
+    @Output()
+    public favClick: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() {
-  }
+    constructor() {}
 
-  ngOnInit() {
-  }
+    ngOnInit() {}
 
-  onFavClick() {
-    this.favClick.emit();
-  }
+    onFavClick() {
+        this.favClick.emit();
+    }
 }

@@ -1,5 +1,5 @@
-import {Repository} from './repository';
+import { Repository } from './repository';
 
 export interface RepositoryUI extends Repository {
-  fav: boolean;
+    fav: boolean;
 }
